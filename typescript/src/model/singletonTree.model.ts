@@ -7,7 +7,7 @@ export class SingletonTree{
         this.tree = new Tree(1,label);
     }
     public static getMyTree(label: string): Tree {
-        if(!SingletonTree.instance){
+        if(!SingletonTree.instance){ 
             SingletonTree.instance = new SingletonTree(label);
             return SingletonTree.instance.tree
         }

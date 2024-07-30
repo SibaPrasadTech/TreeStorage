@@ -4,10 +4,11 @@
   "description": "Aliens planting tree in Earth through API calls!!!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
     "start:dev": "nodemon ./src/index.ts",
     "start": "node /dist/index.js",
-    "build": "rimraf /dist && tsc" 
+    "build": "rimraf /dist && tsc"
   },
   "repository": {
     "type": "git",
@@ -21,9 +22,13 @@
   "homepage": "https://github.com/Hinge-Health-Recruiting/interviews-services_sibaprasadtech#readme",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.0.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4",
     "rimraf": "^6.0.1",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
