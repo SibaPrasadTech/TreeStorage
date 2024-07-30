@@ -12,8 +12,8 @@ This repository includes a Dockerfile. Ensure Docker is installed on your system
 Run the following Docker commands:
 
 ```bash
-docker build . -t tree:v1
-docker run -d --env-file .env <image_id>
+docker build . -t alien-tree:v1 
+docker run -d --env-file .env --expose 3001 -p 3001:3001 alien-tree:v1
 ```
 
 # Application Guide
