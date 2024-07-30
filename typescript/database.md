@@ -46,5 +46,24 @@ Query - CREATE TABLE node (
             ```bash
             Query - SELECT * FROM node;
             ```
+        - **fetchSubtree**
+            - This is not mentioned as a requirement yet, but we have to fetch a subtree based on id, then we have to do a Recursive query using Recursive CTE. By this wat we can avoaid (N+1) queries to the database
+            - call the repository method - fetchSubtree(root_id)
+            ```bash
+            WITH RECURSIVE tree_cte AS (
+                -- Anchor member: start with the root node
+                SELECT id, label, parent_id
+                FROM node
+                WHERE id =  <root_id> -- Specify the root id here
+
+                UNION ALL
+
+                -- Recursive member: get all children of the current node
+                SELECT n.id, n.label, n.parent_id
+                FROM node n
+                INNER JOIN tree_cte t ON n.parent_id = t.id
+            )
+            SELECT * FROM tree_cte;
+            ```
     - My controller will call this services to process the request and send responses back. 
     - The existing Tree model and SingletonTree model can be resued for holding the reconstructed tree in memory and also to insert nodes to the tree etc.
