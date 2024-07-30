@@ -4,6 +4,7 @@ import routes from './routes';
 import morgan from 'morgan';
 import fs from 'fs';
 import path from 'path';
+import {validationErrorHandlerMiddleware, errorHandlerMiddleware} from "./middleware"
 
 export const expressApp = async (app: Application) => {
     app.use(express.json());
@@ -15,4 +16,6 @@ export const expressApp = async (app: Application) => {
     });
     app.use(morgan('tiny', { stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' }) }))
     routes(app);
+    app.use(validationErrorHandlerMiddleware);
+    app.use(errorHandlerMiddleware);
 }
