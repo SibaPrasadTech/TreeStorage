@@ -2,11 +2,13 @@
 
 ## Strategy 1 : 
 ### DB Schema
+```bash
 Table node {
   id integer [primary key]
   label varchar
   parent_id id
 }
+```
 
 Ref: node.id > node.parent_id
 ```bash
