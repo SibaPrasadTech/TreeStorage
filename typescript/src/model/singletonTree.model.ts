@@ -13,6 +13,9 @@ export class SingletonTree{
         }
         return SingletonTree.instance.tree;
     }
+    public static resetTree() {
+        SingletonTree.instance = null;
+    }
 }
 
 let myTree = SingletonTree.getMyTree("Company");
@@ -31,5 +34,3 @@ myTree.addNode("SDE - 3",7);
 myTree.addNode("SDET - 1",8);
 myTree.addNode("SDET - Intern",8);
 myTree.printTree();
-
-console.log(myTree.findNode(9));

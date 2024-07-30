@@ -1,23 +1,27 @@
-import { SingletonTree } from '../../../src/model/singletonTree.model';
+import { Tree } from '../../../src/model/tree.model';
 
 describe('Tree', () => {
+  let tree:Tree;
   beforeEach(() => {
-    SingletonTree.resetTree();
+    tree = new Tree(1,'Root');
   })
-  it('should create a singleton instance of the tree', () => {
-    const tree1 = SingletonTree.getMyTree('Company');
-    const tree2 = SingletonTree.getMyTree('Another Company');
-    expect(tree1).toBe(tree2);
-    expect(tree1.content.label).toBe('Company');
+  it('should create a tree with root node', () => {
+    expect(tree.id).toBe(1);
+    expect(tree.content.label).toBe('Root');
+    expect(tree.content.children).toEqual([]);
   });
-  it('should add nodes to the singleton tree', () => {
-    const tree = SingletonTree.getMyTree('Company');
-    expect(tree.addNode('CEO', 1)).toBe(true);
-    expect(tree.addNode('CFO', 2)).toBe(true);
-    expect(tree.addNode('CTO', 2)).toBe(true);
+
+  it('should add a node correctly', () => {
+    expect(tree.addNode('Child', 1)).toBe(true);
+    expect(tree.content.children.length).toBe(1);
+    expect(tree.content.children[0].content.label).toBe('Child');
   });
+
+  it('should return false if the parent id is not found when adding a node', () => {
+    expect(tree.addNode('Child', 999)).toBe(false);
+  });
+
   it('should convert the tree to JSON correctly', () => {
-    const tree = SingletonTree.getMyTree('Root');
     tree.addNode('Child', 1);
     tree.addNode('Grandchild', 2);
     const expectedJson = {
