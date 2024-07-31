@@ -1,3 +1,5 @@
+LOOK AT THE TYPESCRIPT FOLDER FOR SOLUTION
+
 # Hinge Health Services Code Challenge
 
 ## Welcome. Thank you for taking the time to collaborate with us today.
